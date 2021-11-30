@@ -1,81 +1,88 @@
 package ru.netology;
 
 public class Radio {
+    private int idStation = 10; //количество радиостанций
+    private int radioStation;
+    private int volume;
+    private int maxStation = idStation-1;
+    private int minStation = 0;
+    private int maxVolume = 100;
+    private int minVolume = 0;
 
-    private int currentVolume = 5;
-    int maxVolume = 10;
-    int minVolume = 0;
-    private int currentRadioStation = 5;
-    int maxRadioStation = 9;
-    int minRadioStation = 0;
-
-    public void setcurrentVolume(int currentVolume) {
-        if (currentVolume > maxVolume) {
-            return;
-        }
-        if (currentVolume < minVolume) {
-            return;
-        }
-        this.currentVolume = currentVolume;
-    }
-
-    public int getcurrentVolume() {
-        return currentVolume;
+    public Radio(int idStation) {
+        this.idStation = idStation;
+        this.maxStation = idStation-1;
     }
 
 
-    public void increaseVolume() {
-        if (currentVolume < 10) {
-            currentVolume = currentVolume + 1;
-        }
+    public Radio() {
     }
 
-    public void decreaseVolume() {
-        if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
-        }
-    }
-
-
-    public void setcurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation > maxRadioStation) {
-            this.currentRadioStation = maxRadioStation;
-            return;
-        }
-        if (currentRadioStation < minRadioStation) {
-            this.currentRadioStation = minRadioStation;
-            return;
-        }
-        this.currentRadioStation = currentRadioStation;
-    }
-
-    public int getcurrentRadioStation() {
-        return currentRadioStation;
-    }
-
-    public int getmaxRadioStation() {
-        return maxRadioStation;
-    }
-
-    public int getminRadioStation() {
-        return minRadioStation;
-    }
-
-    public void setchangeTheStationByNext() {
-        if (currentRadioStation < maxRadioStation) {
-            this.currentRadioStation = currentRadioStation += 1;
-
+    public void stationNext() {
+        if (radioStation == maxStation) {
+            radioStation = minStation;
         } else {
-            this.currentRadioStation = minRadioStation;
-
+            radioStation = radioStation + 1;
         }
+        return;
     }
 
-    public void setchangeTheStationByPrey() {
-        if (currentRadioStation > minRadioStation) {
-            this.currentRadioStation = currentRadioStation -= 1;
+    public void stationPrev() {
+        if (radioStation == minStation) {
+            radioStation = maxStation;
         } else {
-            currentRadioStation = maxRadioStation;
+            radioStation = radioStation - 1;
         }
+        return;
     }
+
+    public void setChoiceStation(int radioStation) {
+        if (radioStation > maxStation) {
+            return;
+        }
+        if (radioStation < minStation) {
+            return;
+        }
+        this.radioStation = radioStation;
+    }
+
+
+    public int getRadioStation() {
+        return radioStation;
+    }
+
+    public void setVolume(int volume) {
+        if (volume > maxVolume) {
+            return;
+        }
+        if (volume < minVolume) {
+            return;
+        }
+        this.volume = volume;
+    }
+
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void volumePlus() {
+        if (volume == maxVolume) {
+            volume = maxVolume;
+        } else {
+            volume = volume + 1;
+        }
+        return;
+    }
+
+    public void volumeMinus() {
+        if (volume == minVolume) {
+            volume = minVolume;
+        } else {
+            volume = volume - 1;
+        }
+        return;
+    }
+
+
 }
